@@ -1547,8 +1547,13 @@ function HuneUI.Create(config)
 		if self._closed then
 			return
 		end
+		-- Fit the window (incl. shadow margin) into the viewport with breathing
+		-- room; shrink down to 0.45x on small screens rather than overflowing.
 		local view = screenGui.AbsoluteSize
-		local s = math.clamp(math.min(view.X / 1100, view.Y / 880), 0.7, 1)
+		local s = math.clamp(
+			math.min(view.X * 0.92 / 964, view.Y * 0.92 / 736),
+			0.45, 1
+		)
 		scale.Scale = s
 	end
 	updateScale()
