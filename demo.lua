@@ -1344,11 +1344,11 @@ function HuneUI.Create(config)
 		box.Focused:Connect(function()
 			tween(containerStroke, 0.12, { Color = Theme.AccentBlue, Transparency = 0.2 })
 		end)
-		box.FocusReleased:Connect(function()
+		box.FocusLost:Connect(function(enterPressed)
 			tween(containerStroke, 0.15, { Color = Theme.Border, Transparency = Theme.BorderTransparency })
 			tween(container, 0.15, { BackgroundColor3 = Theme.SurfaceRaised })
 			if opts.Callback then
-				task.spawn(opts.Callback, box.Text)
+				task.spawn(opts.Callback, box.Text, enterPressed)
 			end
 		end)
 	end
