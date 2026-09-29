@@ -58,7 +58,9 @@ local function New(class, props, parent)
 	for key, value in pairs(props) do
 		inst[key] = value
 	end
-	inst.Parent = parent
+	if parent ~= nil then
+		inst.Parent = parent
+	end
 	return inst
 end
 
@@ -336,8 +338,7 @@ function HuneUI.Create(config)
 		IgnoreGuiInset = true,
 		DisplayOrder = 100,
 		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
-		Parent = config.Parent or player:WaitForChild("PlayerGui"),
-	})
+	}, config.Parent or player:WaitForChild("PlayerGui"))
 
 	-- Optional full-viewport backdrop (spec viewport color)
 	if config.Backdrop then
